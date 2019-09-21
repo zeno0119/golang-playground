@@ -51,8 +51,8 @@ workflows:
   deploy:
     jobs:
       - deploy_prod:
-        filters:
-          branches:
-            only:
-              - master
-              - circieci
+          filters:
+            branches:
+              only:
+                - master
+                - circieci
