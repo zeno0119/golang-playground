@@ -8,7 +8,7 @@ jobs:
 
     branches:
       only:
-        -circleci
+        - circleci
 
     steps:
       - checkout
