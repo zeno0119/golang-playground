@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.9
+      - image: circleci/golang:1.13
       - image: circleci/node:10.16.3
     working_directory: /go/src/github.com/zeno0119/golang-playground
 
@@ -37,7 +37,7 @@ jobs:
 
   deploy_prod:
     docker:
-      - image: circleci/golang:1.9
+      - image: circleci/golang:1.13
     working_directory: /go/src/github.com/zeno0119/golang-playground
     steps:
       - checkout
