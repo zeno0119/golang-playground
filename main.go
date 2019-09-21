@@ -6,12 +6,14 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"os"
 )
 
 var log []Chat
 
 func main(){
-	port := "8080"
+	port := os.Getenv("PORT")
+	if port == "" {port = "8080"}
 	router := gin.Default()
 
 	store := cookie.NewStore([]byte("secret"))
