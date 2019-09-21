@@ -9,6 +9,8 @@ jobs:
     steps:
 
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - run: go get -u github.com/kardianos/govendor
       - run: govendor fetch +out
       - run: go build main.go
