@@ -53,5 +53,4 @@ workflows:
       - deploy_prod:
           branches:
             only:
-              - master
               - circieci
