@@ -3,8 +3,7 @@ jobs:
   deploy_prod:
     docker:
       - image: circleci/node:10.16.3
-      - image: circleci/golang:1.13
-    working_directory: /go/src/github.com/zeno0119/golang-playground
+    working_directory: ~/repos
     steps:
       - checkout
       - run: git submodule sync
@@ -12,14 +11,14 @@ jobs:
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
-          working_directory: /go/src/github.com/zeno0119/golang-playground/client
+          working_directory: ~/repos/client
       - restore_cache: # 依存関係キャッシュを復元する特別なステップ
           # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
           command: npm install
-          working_directory: /go/src/github.com/zeno0119/golang-playground/client
+          working_directory: ~/repos/client
       - save_cache: # 依存関係キャッシュを保存する特別なステップ
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -27,7 +26,7 @@ jobs:
       - run:
           name: nuxt generate
           command: yarn nuxt generate
-          working_directory: /go/src/github.com/zeno0119/golang-playground/client
+          working_directory: ~/repos/client
       - run:
           name: 'Install Heroku CLI, if necessary'
           command: |
