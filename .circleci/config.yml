@@ -14,13 +14,13 @@ jobs:
           working_directory: ~/repos/client
       - restore_cache: # 依存関係キャッシュを復元する特別なステップ
           # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "./client/package.json" }}
       - run:
           name: install-npm-wee
           command: npm install
           working_directory: ~/repos/client
       - save_cache: # 依存関係キャッシュを保存する特別なステップ
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "./client/package.json" }}
           paths:
             - ./node_modules
       - run:
